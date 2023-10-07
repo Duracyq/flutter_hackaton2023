@@ -27,6 +27,36 @@ class _RejestracjaState extends State<Rejestracja> {
             decoration: const BoxDecoration(
               color: Color.fromARGB(100, 222, 58, 214),
             ),
+            child: Container(
+              height: 0.25 * width * 0.5,
+              width: width,
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.all(20),
+              child: Center(
+                child: SizedBox(
+                  width: 100,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Imię',
+                      hintStyle: GoogleFonts.openSans(
+                        textStyle: const TextStyle(
+                            color: Colors.grey), // Kolor czcionki
+                      ),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Colors
+                                .orange), // Kolor obramowania w stanie normalnym
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Colors
+                                .purple), // Kolor obramowania w stanie aktywnym
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ),
