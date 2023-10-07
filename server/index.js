@@ -1,3 +1,4 @@
+const { urlencoded } = require('body-parser');
 const express = require('express');
 const snowflake = require('snowflake-sdk');
 
@@ -7,6 +8,9 @@ const schema = 'tabele'; // tabele
 
 const app = express();
 const port = 3000;
+
+app.use(express.json());
+app.use(urlencoded({  extended: true  }));
 
 // Snowflake configuration
 const snowflakeConfig = {
@@ -30,28 +34,37 @@ connection.connect((err, conn) => {
   console.log('Connected to Snowflake');
 });
 
+let productListJson = [];
 
-connection.execute({
-  sqlText: "",
-  streamResult: true,
-  complete: function (err, stmt)
-  {
-    let stream = stmt.streamRows();
-    // Read data from the stream when it is available
-    stream.on('readable', function (row)
+app.get('/api/read/', (req, res) => {
+  connection.execute({
+    sqlText: `select * from ${database}.${schema}.${tabele};`,
+    streamResult: true,
+    complete: function (err, stmt)
     {
-      while ((row = this.read()) !== null)
+      let stream = stmt.streamRows();
+      // Read data from the stream when it is available
+      stream.on('readable', function (row)
       {
-        console.log(row);
-      }
-    }).on('end', function ()
-    {
-      console.log('done');
-    }).on('error', function (err)
-    {
-      console.log(err);
-    });
-  }
+        while ((row = this.read()) !== null)
+        {
+          console.log(row);
+          productListJson = row;
+          console.log(productListJson);
+          if(!productListJson.isEmpty) {
+            res.status(200).send(productListJson);
+            console.log('sent data');
+          }
+        }
+      }).on('end', function ()
+      {
+        console.log('done');
+      }).on('error', function (err)
+      {
+        console.log(err);
+      });
+    }
+  });
 });
 
 
