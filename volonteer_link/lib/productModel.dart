@@ -1,25 +1,32 @@
-class User {
-  final String? name;
-  final String? surname;
-  final int? pesel;
-  final String? address;
-  final int? phoneNumber;
-  final String? email;
-  final String? nickname;
-  final String? role;
-  final bool? isFalse;
-  final int? id;
+class UserModule {
+    late final String name;
+    late final String surname;
+    late final int pesel;
+    late final String address;
+    late final int phoneNumber;
+    late final String email;
+    late final String nickname;
+    late final String role;
+    late final bool regulamin = false;
+    late final int id;
+}
 
-  User({
-    this.name,
-    this.surname,
-    this.pesel,
-    this.address,
-    this.phoneNumber,
-    this.email,
-    this.nickname,
-    this.role,
-    this.isFalse,
-    this.id,
-  });
+class Event {
+  final int id;
+  final String title;
+  final String desc;
+  final String organizator;
+  final String date;
+
+  Event({required this.id, required this.title, required this.desc, required this.organizator, required this.date});
+
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return Event(
+      id: json['id'],
+      title: json['title'],
+      desc: json['desc'],
+      organizator: json['organizator'],
+      date: json['date']
+    );
+  }
 }
