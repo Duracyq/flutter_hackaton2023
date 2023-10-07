@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Rejestracja extends StatefulWidget {
   const Rejestracja({super.key});
-
   @override
   State<Rejestracja> createState() => _RejestracjaState();
 }
@@ -29,11 +28,11 @@ class _RejestracjaState extends State<Rejestracja> {
         padding: EdgeInsets.only(top: width * 0.05),
         child: Center(
           child: Container(
-            padding: EdgeInsets.only(top: width * 0.1),
+            padding: EdgeInsets.only(top: width * 0.05, bottom: width * 0.05),
             width: width * 0.9,
-            height: height * 2,
+            height: height * 1.5,
             decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 222, 58, 214),
+                color: Color.fromARGB(255, 255, 177, 251),
                 borderRadius: BorderRadius.circular(15)),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,8 +40,25 @@ class _RejestracjaState extends State<Rejestracja> {
                   Container(
                     width: width * 0.8,
                     height: 60,
+                    child: Center(
+                      child: Text(
+                        'Rejestracja Wolontariusza',
+                        style: GoogleFonts.mooli(
+                          // Ustawienie czcionki Open Sans
+                          textStyle: const TextStyle(
+                            fontStyle: FontStyle.normal,
+                            color: Color.fromARGB(255, 55, 0, 61),
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: width * 0.8,
+                    height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -52,13 +68,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'Imię',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -68,7 +85,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -78,13 +95,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'Nazwisko',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -94,23 +112,26 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
                       child: TextFormField(
+                        onTap: () => const OutlineInputBorder(),
+                        obscureText: true,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
-                          hintText: 'Imię',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintText: 'Hasło',
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -120,7 +141,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -130,13 +151,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'Adres',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -146,7 +168,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -156,13 +178,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'Numer dowodu/legitymacji',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -172,7 +195,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -182,13 +205,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'PESEL',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -198,7 +222,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -208,13 +232,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: "Telefon",
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -224,7 +249,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -234,13 +259,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'E-mail',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -250,7 +276,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     width: width * 0.8,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
+                      color: const Color.fromARGB(255, 245, 237, 237),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: Center(
@@ -260,39 +286,14 @@ class _RejestracjaState extends State<Rejestracja> {
                           // Ustawienie czcionki Open Sans
                           textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
-                            color: Colors.white,
+                            color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
                           ),
                         ),
                         decoration: const InputDecoration(
                           hintText: 'Wiek',
-                          hintStyle: TextStyle(color: Colors.white),
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: width * 0.8,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 207, 46, 199),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Center(
-                      child: TextFormField(
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.openSans(
-                          // Ustawienie czcionki Open Sans
-                          textStyle: const TextStyle(
-                            fontStyle: FontStyle.normal,
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        decoration: const InputDecoration(
-                          hintText: 'J',
-                          hintStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(
+                              color: Color.fromRGBO(131, 116, 116, 100)),
                           border: InputBorder.none,
                         ),
                       ),
@@ -303,7 +304,7 @@ class _RejestracjaState extends State<Rejestracja> {
                       const SizedBox(height: 20.0),
                       const Text(
                         'Jakie języki obce znasz?',
-                        style: TextStyle(fontSize: 20.0),
+                        style: TextStyle(fontSize: 20.0, color: Colors.black),
                       ),
                       const SizedBox(height: 10.0),
                       Column(
@@ -329,30 +330,19 @@ class _RejestracjaState extends State<Rejestracja> {
                       ),
                       const SizedBox(height: 20.0),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size(200, 55),
+                          backgroundColor:
+                              const Color.fromARGB(255, 140, 31, 134),
+                        ),
                         onPressed: () {
-                          List<String> selected = [];
-                          for (int i = 0; i < languages.length; i++) {
-                            if (selectedLanguages[i]) {
-                              selected.add(languages[i]);
-                            }
-                          }
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text('Wybrane języki:'),
-                                content: Text(selected.join(', ')),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
+                          // List<String> selected = [];
+                          // for (int i = 0; i < languages.length; i++) {
+                          //   if (selectedLanguages[i]) {
+                          //     selected.add(languages[i]);
+                          //   }
+                          // }
+                          //! POST REQUEST !!!!
                         },
                         child: const Text('Zapisz'),
                       ),
