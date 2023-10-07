@@ -25,7 +25,7 @@ const snowflakeConfig = {
 
 // Connect to Snowflake
 const connection = snowflake.createConnection(snowflakeConfig);
-console.log(`1 connection.connect`)
+
 connection.connect((err, conn) => {
   if (err) {
     console.error('Unable to connect to Snowflake:', err);
@@ -68,7 +68,6 @@ app.get('/api/read/', (req, res) => {
 });
 
 
-console.log('passed?, port')
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
