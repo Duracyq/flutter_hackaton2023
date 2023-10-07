@@ -14,7 +14,7 @@ class _RejestracjaState extends State<Rejestracja> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double width = size.width;
-    double height = size.height;
+    // double height = size.height;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ClipRRect(
