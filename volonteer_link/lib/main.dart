@@ -19,17 +19,31 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           title: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget> [
               //Image.asset('assets/images/logo.png',
               Column(
                 children: [
-                  Text('Volonteerly', 
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+                  Center(
+                    child: Column(
+                      children:[
+                        Text('Volonteerly', 
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          ),
+                        ),
+                        Text('Twój Wolontariat w zasięgu ręki', 
+                          style: TextStyle(
+                            color: Color.fromRGBO(255,255,255,80),
+                            fontSize: 12,
+                            
+                          ),
                       ),
-                  ),
-                  Text('Twój Wolontariat w zasięgu ręki'),
+                      ],
+                    )
+                  )
+                  
                 ],
               ),
             ],
