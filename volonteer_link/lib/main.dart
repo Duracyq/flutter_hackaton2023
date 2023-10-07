@@ -78,10 +78,20 @@ class _MyAppState extends State<MyApp> {
             ).toList(),
           ),
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(40),
-          child: Text('data'),
-          ),
+        body: const Column(
+          children:[
+            Row(
+              children: [
+                Column(
+                  children: [
+                    
+                  ],
+                ),
+              ],
+            ),
+            Row(),
+          ],
+        ),
       );
   }
 }
