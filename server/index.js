@@ -32,11 +32,11 @@ connection.connect((err, conn) => {
 
 
 connection.execute({
-  sqlText: "SELECT 1 FROM snowflake.account_usage.query_history limit 1",
+  sqlText: "",
   streamResult: true,
   complete: function (err, stmt)
   {
-    var stream = stmt.streamRows();
+    let stream = stmt.streamRows();
     // Read data from the stream when it is available
     stream.on('readable', function (row)
     {
