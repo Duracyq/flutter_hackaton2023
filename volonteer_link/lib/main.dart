@@ -4,7 +4,9 @@ import 'package:flutter/services.dart' show rootBundle;
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+      home: MyApp()
+    ));
 }
 
 class Event {
