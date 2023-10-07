@@ -18,8 +18,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     List <String> eventName = [];
-    List <String> event_text = [];
-    List <String> event_date = [];
+    List <String> evenText = [];
+    List <String> eventDate = [];
 
 
   // for(int i = 0; i < 2; i++){
@@ -107,9 +107,9 @@ class _MyAppState extends State<MyApp> {
                     children: [
                       const Padding(
                         padding: EdgeInsets.all(20),
-                        child: Text('Wydażenia:',
+                        child: Text('Wydarzenia:',
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
