@@ -41,7 +41,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late List<Event> events;
+  @override
+  Widget build(BuildContext context) {
+    List <String> eventName = [];
+    List <String> evenText = [];
+    List <String> eventDate = [];
+    late List<Event> events;
+
 
   Future<void> loadJsonData() async {
     String jsonData = await rootBundle.loadString('assets/data.json');
@@ -139,8 +145,57 @@ class _MyAppState extends State<MyApp> {
           //   ],
           // ),
         ),
-        drawer: Drawer(
+
+        drawer: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+          child: Drawer(
+            child: ListView(
+              children: drawerTabs.map((e) => Text(e, 
+                  style: const TextStyle(
+                    fontSize: 20,  
+                  ),
+                ),
+              ).toList(),
             ),
+          ),
+        ),
+        body:Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+            children:[
+              Row( 
+                children: [
+                  Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Text('Wydarzenia:',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Scrollbar(
+                        child: ListView(
+                          children: 
+                              eventName.map((e) => Container(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Text(e, 
+                                    style: const TextStyle(
+                                      fontSize: 20,  
+                                    ),
+                                  ),
+                              ),).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const Row(),
+             ],
+        // drawer: Drawer(),
         body: const Text('body'),
       ),
     );
