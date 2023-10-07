@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
-import 'rejestracja.dart';
-import 'user_profil.dart';
-void main() {
-  runApp(const MaterialApp(
-      home: MyApp()
-    ));
-}
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class UserProfil extends StatefulWidget {
+  const UserProfil({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State <UserProfil> createState() => UserProfilState();
 }
 
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
+class UserProfilState extends State<UserProfil> {
     final List <String> drawerTabs = [
       "O nas",
       "Informacja kontaktowa",
       "Wydażenia",
       "Chat",
     ];
-    //double dHeight = MediaQuery.of(context).size.height;
+
+    String userName = "testName";
+    String userSecondName = "testSecondName";
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor:const Color.fromARGB(156, 196, 15, 227),
@@ -59,16 +55,12 @@ class _MyAppState extends State<MyApp> {
           ), 
           actions: <Widget> [
             IconButton(
-              onPressed: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const UserProfil()),
-                );
-              }, //dodać funkcję 
+              onPressed: (){}, //dodać funkcję 
               icon: const Icon(Icons.person)
             ),
           ],
         ),
-        drawer: Drawer(
+        drawer: Drawer( 
           child: ListView(
             children: drawerTabs.map((e) => Text(e, 
                 style: const TextStyle(
@@ -78,10 +70,28 @@ class _MyAppState extends State<MyApp> {
             ).toList(),
           ),
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(40),
-          child: Text('data'),
-          ),
+        body: Column(
+          children: [
+            Column( // dane użytkownika
+              children: [
+                Row(
+                  children: [
+                    // Image(
+                    //   image:,
+                    // ),
+                    Text(userName), 
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(userSecondName),
+                  ],
+                ),
+              ],
+            ),
+            const Column(),
+          ],
+        ),
       );
   }
 }
+
