@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'user_profil.dart';
+import './service/api.dart' as api;
+import 'main.dart' as m;
 
 class Rejestracja01 extends StatefulWidget {
   const Rejestracja01({super.key});
@@ -10,6 +13,7 @@ class Rejestracja01 extends StatefulWidget {
 }
 
 class _Rejestracja01State extends State<Rejestracja01> {
+ 
   @override
   Widget build(BuildContext context) {
     final List<String> drawerTabs = [
@@ -97,6 +101,16 @@ class Rejestracja extends StatefulWidget {
 }
 
 class _RejestracjaState extends State<Rejestracja> {
+  final TextEditingController imieController = TextEditingController();
+  final TextEditingController nazwiskoController = TextEditingController();
+  final TextEditingController hasloController = TextEditingController();
+  final TextEditingController adresController = TextEditingController();
+  final TextEditingController numerDowoduController = TextEditingController();
+  final TextEditingController peselController = TextEditingController();
+  final TextEditingController telefonController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController wiekController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     List<String> languages = [
@@ -152,6 +166,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: imieController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -179,6 +194,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: nazwiskoController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -206,6 +222,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: hasloController,
                         onTap: () => const OutlineInputBorder(),
                         obscureText: true,
                         textAlign: TextAlign.center,
@@ -235,6 +252,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: adresController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -262,6 +280,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: numerDowoduController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -289,6 +308,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: peselController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -316,6 +336,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: telefonController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -343,6 +364,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: emailController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -370,6 +392,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: wiekController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -425,13 +448,22 @@ class _RejestracjaState extends State<Rejestracja> {
                               const Color.fromARGB(255, 140, 31, 134),
                         ),
                         onPressed: () {
-                          // List<String> selected = [];
-                          // for (int i = 0; i < languages.length; i++) {
-                          //   if (selectedLanguages[i]) {
-                          //     selected.add(languages[i]);
-                          //   }
-                          // }
                           //! POST REQUEST !!!!
+                          var data = {
+                            "id": 0,
+                            "uname": imieController,
+                            "sname": nazwiskoController,
+                            "pesel": peselController,
+                            "phonenum": telefonController,
+                            "email": emailController,
+                            "age": wiekController,
+                            "role": "user",
+                            "regulamin": true
+                          };
+                          api.Api.createUser(data);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => m.MyApp())
+                          );
                         },
                         child: const Text('Zapisz'),
                       ),
