@@ -5,12 +5,18 @@ void main() {
     ));
 }
 
-class Event extends StatefulWidget {
+class Event{
+  
   String ?eventName;
   String ?eventAdres;
   String ?eventDate;
   String ?eventDescribtion;
-  //String ?eventDescribtion;  
+  String ?eventOrganizator;
+  String ?eventId;
+  int ?volunteersNeeded;
+  int ?volunteersAge; 
+
+  Event({this.eventName, this.eventAdres, this.eventDate, this.eventDescribtion, this.eventOrganizator, this.eventId, this.volunteersNeeded, this.volunteersAge});     
 }
 
 class MyApp extends StatefulWidget {
@@ -23,6 +29,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+
+    var event = Event(/*pobieramy dane z databasu*/);
 
     final List <String> drawerTabs = [
       "O nas",

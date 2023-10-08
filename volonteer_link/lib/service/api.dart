@@ -23,7 +23,7 @@ class YourData {
 class Api {
   static const baseUrl = 'http://127.0.0.1/api/';
 
-  static Future<List<YourData>> getProduct() async {
+  static Future<List<YourData>> getProduct() async { // ta funkcja
     List<YourData> yourdata = [];
     try {
       final res = await http.get(Uri.parse('$baseUrl/read'));
