@@ -6,11 +6,8 @@ import 'rejestracja.dart' as r;
 import 'package:flutter/services.dart' show rootBundle;
 import 'productModel.dart' as pM;
 
-
 void main() {
-  runApp(const MaterialApp(
-      home: MyApp()
-    ));
+  runApp(const MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -21,13 +18,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   late List<pM.Event> events;
-    List <String> eventName = [];
-    List <String> evenText = [];
-    List <String> eventDate = [];
-    late List<pM.Event> eventList;
-
+  List<String> eventName = [];
+  List<String> evenText = [];
+  List<String> eventDate = [];
+  late List<pM.Event> eventList;
 
   Future<void> loadJsonData() async {
     String jsonData = await rootBundle.loadString('assets/data.json');
@@ -35,12 +30,8 @@ class _MyAppState extends State<MyApp> {
 
     events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
   }
-  List drawerTabs = [
-    "O nas",
-    "Kontakt",
-    "Wydarzenia",
-    "Chat"
-  ];
+
+  List drawerTabs = ["O nas", "Kontakt", "Wydarzenia", "Chat"];
 
   @override
   void initState() {
@@ -52,36 +43,38 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     //double dHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [
-              //Image.asset('assets/images/logo.png',
-              Column(
-                children: [
-                  Center(
-                    child: Column(
-                      children:[
-                        Text('Volonteerly', 
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  //Image.asset('assets/images/logo.png',
+                  Column(
+                    children: [
+                      Center(
+                          child: Column(
+                        children: [
+                          Text(
+                            'Volonteerly',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                        Text('Twój Wolontariat w zasięgu ręki', 
-                          style: TextStyle(
-                            color: Color.fromRGBO(255,255,255,80),
-                            fontSize: 12,
-                            
+                          Text(
+                            'Twój Wolontariat w zasięgu ręki',
+                            style: TextStyle(
+                              color: Color.fromRGBO(255, 255, 255, 80),
+                              fontSize: 12,
+                            ),
                           ),
-                      ),
-                      ],
-                    )
-                  )
-                  
+                        ],
+                      ))
+                    ],
+                  ),
                 ],
               ),
+
             ],
           ), 
           actions: <Widget> [
@@ -97,59 +90,108 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
 
-        drawer: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-          child: Drawer(
-            child: ListView(
-              children: drawerTabs.map((e) => Text(e, 
-                  style: const TextStyle(
-                    fontSize: 20,  
-                  ),
-                ),
-              ).toList(),
+
+              //backgroundColor:Color.fromARGB(193, 71, 212),
+              // title: Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     IconButton(
+              //         onPressed: (){}, //dodać funkcję
+              //         icon: const Icon(Icons.view_headline), //dodać icon trzech kresek
+              //         //color:,
+              //     ),
+              //     SizedBox(
+              //       height: dHeight/6,
+              //       child: Align(
+              //         child: const Row(
+              //           children:[
+              //           Column(
+              //             children:[
+              //               Text('Volonteerly', style: TextStyle(
+              //                 color: Colors.white,
+              //                 fontSize: 24,
+              //                 ),
+              //               ),
+              //               Text('Twój Wolontariat w zasięgu ręki', style: TextStyle(
+              //                 color:Color.fromRGBO(255, 255, 255, 1),
+              //                 fontSize: 16,
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ],
+              //       ),
+              //       ),
+              //     ),
+              //     IconButton(
+              //         onPressed: (){}, //dodać funkcję
+              //         icon: const Icon(Icons.person),
+              //         color: Colors.white,
+              //     ),
+              //   ],
+              // ),
             ),
-          ),
-        ),
-        body:Align(
-            alignment: Alignment.topCenter,
-            child: Column(
-            children:[
-              Row( 
-                children: [
-                  Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Text('Wydarzenia:',
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
+            drawer: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child: Drawer(
+                child: ListView(
+                  children: drawerTabs
+                      .map(
+                        (e) => Text(
+                          e,
+                          style: const TextStyle(
+                            fontSize: 20,
                           ),
                         ),
-                      ),
-                      Scrollbar(
-                        child: ListView(
-                          children: 
-                              eventName.map((e) => Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(e, 
-                                    style: const TextStyle(
-                                      fontSize: 20,  
+                      )
+                      .toList(),
+                ),
+              ),
+            ),
+            body: Align(
+              alignment: Alignment.topCenter,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(20),
+                            child: Text(
+                              'Wydarzenia:',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Scrollbar(
+                            child: ListView(
+                              children: eventName
+                                  .map(
+                                    (e) => Container(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        e,
+                                        style: const TextStyle(
+                                          fontSize: 20,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                              ),).toList(),
-                        ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  const Row(),
                 ],
+                // drawer: Drawer(),
+                // body: const Text('body'),
               ),
-              const Row(),
-             ],
-        // drawer: Drawer(),
-        // body: const Text('body'),
-      ),
-    )));
+            )));
   }
 }
-

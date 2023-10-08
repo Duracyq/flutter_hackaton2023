@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+
 void main() {
-  runApp(const MaterialApp(
-      home: MyApp()
-    ));
+  runApp(const MaterialApp(home: MyApp()));
 }
 
-class Event{
-  
-  String ?eventName;
-  String ?eventAdres;
-  String ?eventDate;
-  String ?eventDescribtion;
-  String ?eventOrganizator;
-  String ?eventId;
-  int ?volunteersNeeded;
-  int ?volunteersAge; 
+class Event {
+  String? eventName;
+  String? eventAdres;
+  String? eventDate;
+  String? eventDescribtion;
+  String? eventOrganizator;
+  String? eventId;
+  int? volunteersNeeded;
+  int? volunteersAge;
 
-  Event({this.eventName, this.eventAdres, this.eventDate, this.eventDescribtion, this.eventOrganizator, this.eventId, this.volunteersNeeded, this.volunteersAge});     
+  Event(
+      {this.eventName,
+      this.eventAdres,
+      this.eventDate,
+      this.eventDescribtion,
+      this.eventOrganizator,
+      this.eventId,
+      this.volunteersNeeded,
+      this.volunteersAge});
 }
 
 class MyApp extends StatefulWidget {
@@ -29,82 +35,84 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-
     var event = Event(/*pobieramy dane z databasu*/);
 
-    final List <String> drawerTabs = [
+    final List<String> drawerTabs = [
       "O nas",
       "Informacja kontaktowa",
       "Wydażenia",
       "Chat",
     ];
 
-     double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor:const Color.fromARGB(156, 196, 15, 227),
-          toolbarHeight: deviceHeight/6-20,
-          title: const SizedBox(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget> [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
+        backgroundColor: const Color.fromARGB(156, 196, 15, 227),
+        toolbarHeight: deviceHeight / 6 - 20,
+        title: const SizedBox(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
                       child: Column(
-                        children:[
-                          Text('Volonteerly', 
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 34,
-                            ),
-                          ),
-                          Text('Twój Wolontariat w zasięgu ręki', 
-                            style: TextStyle(
-                              color: Color.fromRGBO(255,255,255,80),
-                              fontSize: 20,
-                            ),
-                          ),
-                        ],
-                      )
-                    )
-                    
-                  ],
-                ),
-              ],
-            ),
-          ), 
-          actions: <Widget> [
-            Padding( 
-              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-              child: IconButton(
-                onPressed: (){
-                  //   Navigator.of(context).push(
-                  //     MaterialPageRoute(builder: (context) => const UserProfil()),
-                  // );
-                },
-                icon: const Icon(Icons.person),
+                    children: [
+                      Text(
+                        'Volonteerly',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 34,
+                        ),
+                      ),
+                      Text(
+                        'Twój Wolontariat w zasięgu ręki',
+                        style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 80),
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ))
+                ],
               ),
-            ),
-          ],
-        ),
-      drawer: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-          child: Drawer(
-            child: ListView(
-              children: drawerTabs.map((e) => Text(e, 
-                  style: const TextStyle(
-                    fontSize: 20,  
-                  ),
-                ),
-              ).toList(),
-            ),
+            ],
           ),
         ),
-      // body: 
-          
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+            child: IconButton(
+              onPressed: () {
+                //   Navigator.of(context).push(
+                //     MaterialPageRoute(builder: (context) => const UserProfil()),
+                // );
+              },
+              icon: const Icon(Icons.person),
+            ),
+          ),
+        ],
+      ),
+      drawer: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+        child: Drawer(
+          child: ListView(
+            children: drawerTabs
+                .map(
+                  (e) => Text(
+                    e,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      ),
+      // body:
     );
   }
 }
