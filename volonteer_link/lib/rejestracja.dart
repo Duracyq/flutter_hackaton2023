@@ -1,6 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:volonteer_link/config/drawerConfig.dart';
 import 'user_profil.dart';
+import 'config/appbarConfig.dart';
+import './service/api.dart' as api;
+import 'main.dart' as m;
 
 class Rejestracja01 extends StatefulWidget {
   const Rejestracja01({super.key});
@@ -12,79 +17,10 @@ class Rejestracja01 extends StatefulWidget {
 class _Rejestracja01State extends State<Rejestracja01> {
   @override
   Widget build(BuildContext context) {
-    final List<String> drawerTabs = [
-      "O nas",
-      "Informacja kontaktowa",
-      "Wydażenia",
-      "Chat",
-    ];
     double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(156, 196, 15, 227),
-        toolbarHeight: deviceHeight / 6 - 20,
-        title: const SizedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                      child: Column(
-                    children: [
-                      Text(
-                        'Volonteerly',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 34,
-                        ),
-                      ),
-                      Text(
-                        'Twój Wolontariat w zasięgu ręki',
-                        style: TextStyle(
-                          color: Color.fromRGBO(255, 255, 255, 80),
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ))
-                ],
-              ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const UserProfil()),
-                );
-              },
-              icon: const Icon(Icons.person),
-            ),
-          ),
-        ],
-      ),
-      drawer: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-        child: Drawer(
-          child: ListView(
-            children: drawerTabs
-                .map(
-                  (e) => Text(
-                    e,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-        ),
-      ),
+      appBar: buildAppBar(context, null),
+      drawer: buildDrawerConfig(context),
       body: const Rejestracja(),
     );
   }
@@ -97,6 +33,16 @@ class Rejestracja extends StatefulWidget {
 }
 
 class _RejestracjaState extends State<Rejestracja> {
+  final TextEditingController imieController = TextEditingController();
+  final TextEditingController nazwiskoController = TextEditingController();
+  final TextEditingController hasloController = TextEditingController();
+  final TextEditingController adresController = TextEditingController();
+  final TextEditingController numerDowoduController = TextEditingController();
+  final TextEditingController peselController = TextEditingController();
+  final TextEditingController telefonController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController wiekController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     List<String> languages = [
@@ -152,6 +98,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: imieController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -179,6 +126,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: nazwiskoController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -206,6 +154,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: hasloController,
                         onTap: () => const OutlineInputBorder(),
                         obscureText: true,
                         textAlign: TextAlign.center,
@@ -235,6 +184,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: adresController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -262,6 +212,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: numerDowoduController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -289,6 +240,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: peselController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -316,6 +268,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: telefonController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -343,6 +296,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: emailController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -370,6 +324,7 @@ class _RejestracjaState extends State<Rejestracja> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: wiekController,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
                           // Ustawienie czcionki Open Sans
@@ -425,13 +380,21 @@ class _RejestracjaState extends State<Rejestracja> {
                               const Color.fromARGB(255, 140, 31, 134),
                         ),
                         onPressed: () {
-                          // List<String> selected = [];
-                          // for (int i = 0; i < languages.length; i++) {
-                          //   if (selectedLanguages[i]) {
-                          //     selected.add(languages[i]);
-                          //   }
-                          // }
                           //! POST REQUEST !!!!
+                          var data = {
+                            "id": 0,
+                            "uname": imieController,
+                            "sname": nazwiskoController,
+                            "pesel": peselController,
+                            "phonenum": telefonController,
+                            "email": emailController,
+                            "age": wiekController,
+                            "role": "user",
+                            "regulamin": true
+                          };
+                          api.Api.createUser(data);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => m.MyApp()));
                         },
                         child: const Text('Zapisz'),
                       ),

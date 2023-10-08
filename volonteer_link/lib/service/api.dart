@@ -23,7 +23,23 @@ class YourData {
 class Api {
   static const baseUrl = 'http://127.0.0.1/api/';
 
-  static Future<List<YourData>> getProduct() async {
+  static createUser(Map udata) async {
+    try {
+      final res = await http.post(Uri.parse('$baseUrl/postUser'), body: udata);
+      if(res.statusCode != 200) {
+        print('Failed to get response');
+      }
+      else {
+        var data = jsonDecode(res.body.toString());
+        print(data);
+      }
+
+    }catch(e){
+      print(e);
+    }
+  }
+
+  static Future<List<YourData>> getProduct() async { // ta funkcja
     List<YourData> yourdata = [];
     try {
       final res = await http.get(Uri.parse('$baseUrl/read'));

@@ -1,13 +1,19 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'user_profil.dart';
+import 'config/appbarConfig.dart';
+import 'config/drawerConfig.dart';
+
+import 'main.dart' as m;
+import 'rejestracja.dart' as r;
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +30,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: buildAppBar(context, null),
+        drawer: buildDrawerConfig(context),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(top: width * 0.05),
           child: Center(
@@ -38,6 +46,15 @@ class MyApp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Align(
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(); // Use pop to navigate back
+                      },
+                      icon: Icon(Icons.arrow_back_ios_rounded),
+                    ),
+                    alignment: Alignment.topLeft,
+                  ),
                   Container(
                     width: width * 0.8,
                     height: 60,
@@ -125,6 +142,15 @@ class MyApp extends StatelessWidget {
                     },
                     child: const Text('Zaloguj się'),
                   ),
+                  TextButton(
+                    child: const Text('Zarejestruj się'),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => const r.Rejestracja01()),
+                      );
+                    },
+                  )
                 ],
               ),
             ),

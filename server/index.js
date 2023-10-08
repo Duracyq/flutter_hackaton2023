@@ -67,6 +67,49 @@ app.get('/api/read/', (req, res) => {
   });
 });
 
+const dataFilePath = '../volonteer_link/assets/users.json';
+
+function loadUserData() {
+  try {
+    const data = fs.readFileSync(dataFilePath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveUserData(userData) {
+  fs.writeFileSync(dataFilePath, JSON.stringify(userData, null, 2));
+}
+
+let productDataUsers = loadUserData();
+
+// Create a POST route to handle incoming user data
+app.post('/api/postUser', (req, res) => {
+  console.log('Received data:', req.body);
+
+  // Assuming you want to add the received data to the existing JSON array
+  const newUser = {
+    id: productDataUsers.length + 1, // Generate a new ID
+    uname: req.body.uname,
+    sname: req.body.sname,
+    pesel: req.body.pesel,
+    phonenum: req.body.phonenum,
+    email: req.body.email,
+    age: req.body.age,
+    role: req.body.role,
+    regulamin: req.body.regulamin,
+  };
+
+  // Push the new user data to the existing array
+  productDataUsers.push(newUser);
+  saveUserData(productDataUsers);
+  res.status(200).send({
+    "status": 200,
+    "message": "User registered",
+    "product": productDataUsers
+  })
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
