@@ -1,14 +1,14 @@
 class UserModule {
+    late final int id;
     late final String name;
     late final String surname;
-    late final int pesel;
+    late final String pesel;
     late final String address;
-    late final int phoneNumber;
+    late final String phonenum;
     late final String email;
-    late final String nickname;
+    late final int age;
     late final String role;
     late final bool regulamin = false;
-    late final int id;
 }
 
 class Event {

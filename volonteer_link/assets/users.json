@@ -1,0 +1,35 @@
+[
+    {
+        "id":1,
+        "uname": "Szymon",
+        "sname": "Kajak",
+        "pesel": "06221204632",
+        "phonenum": "660 077 430",
+        "email": "szymonkajak542@gmail.com",
+        "age": 17,
+        "role": "admin",
+        "regulamin": true
+    },
+    {
+        "id":2,
+        "uname": "Szymon",
+        "sname": "Kajak",
+        "pesel": "06221204632",
+        "phonenum": "660 077 430",
+        "email": "szymonkajak542@gmail.com",
+        "age": 17,
+        "role": "admin",
+        "regulamin": true
+    },
+    {
+        "id":3,
+        "uname": "Szymon",
+        "sname": "Kajak",
+        "pesel": "06221204632",
+        "phonenum": "660 077 430",
+        "email": "szymonkajak542@gmail.com",
+        "age": 17,
+        "role": "admin",
+        "regulamin": true
+    }
+]

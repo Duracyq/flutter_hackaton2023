@@ -67,36 +67,49 @@ app.get('/api/read/', (req, res) => {
   });
 });
 
-const fs = require('fs');
+const dataFilePath = '../volonteer_link/assets/users.json';
 
-// app.post('/api/create', (req, res) => {
-//   console.log('Received a POST request');
+function loadUserData() {
+  try {
+    const data = fs.readFileSync(dataFilePath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    return [];
+  }
+}
 
-//   // Assuming you want to retrieve data from the request body
-//   const requestBody = req.body;
+function saveUserData(userData) {
+  fs.writeFileSync(dataFilePath, JSON.stringify(userData, null, 2));
+}
 
-//   // Define the path to the JSON file where you want to save the data
-//   const filePath = './temp/data.json';
+let productDataUsers = loadUserData();
 
-//   // Read existing data from the file (if it exists)
-//   let existingData = [];
-//   try {
-//     existingData = JSON.parse(fs.readFileSync(filePath));
-//   } catch (err) {
-//     // If the file doesn't exist or is not valid JSON, existingData will remain an empty array
-//   }
+// Create a POST route to handle incoming user data
+app.post('/api/postUser', (req, res) => {
+  console.log('Received data:', req.body);
 
-//   // Push the new data into the existing data array
-//   existingData.push(requestBody);
+  // Assuming you want to add the received data to the existing JSON array
+  const newUser = {
+    id: productDataUsers.length + 1, // Generate a new ID
+    uname: req.body.uname,
+    sname: req.body.sname,
+    pesel: req.body.pesel,
+    phonenum: req.body.phonenum,
+    email: req.body.email,
+    age: req.body.age,
+    role: req.body.role,
+    regulamin: req.body.regulamin,
+  };
 
-//   // Write the updated data back to the file
-//   fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
-
-//   // Send a response to the client
-//   res.status(201).json({ message: 'Data created and saved to JSON file successfully' });
-// });
-
-
+  // Push the new user data to the existing array
+  productDataUsers.push(newUser);
+  saveUserData(productDataUsers);
+  res.status(200).send({
+    "status": 200,
+    "message": "User registered",
+    "product": productDataUsers
+  })
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

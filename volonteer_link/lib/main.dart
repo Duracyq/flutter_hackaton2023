@@ -89,46 +89,6 @@ class _MyAppState extends State<MyApp> {
               icon: const Icon(Icons.person)
             ),
           ],
-          
-          //backgroundColor:Color.fromARGB(193, 71, 212),
-          // title: Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     IconButton(
-          //         onPressed: (){}, //dodać funkcję 
-          //         icon: const Icon(Icons.view_headline), //dodać icon trzech kresek
-          //         //color:, 
-          //     ),
-          //     SizedBox(
-          //       height: dHeight/6,
-          //       child: Align(
-          //         child: const Row(
-          //           children:[
-          //           Column(
-          //             children:[
-          //               Text('Volonteerly', style: TextStyle(
-          //                 color: Colors.white,
-          //                 fontSize: 24,
-          //                 ),
-          //               ),
-          //               Text('Twój Wolontariat w zasięgu ręki', style: TextStyle(
-          //                 color:Color.fromRGBO(255, 255, 255, 1),
-          //                 fontSize: 16,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ],
-          //       ),
-          //       ),
-          //     ),
-          //     IconButton(
-          //         onPressed: (){}, //dodać funkcję 
-          //         icon: const Icon(Icons.person), 
-          //         color: Colors.white, 
-          //     ),
-          //   ],
-          // ),
         ),
 
         drawer: Padding(
