@@ -3,24 +3,54 @@
         "id": 1,
         "title": "Wydarzenie 1",
         "desc": "lorem ipsum dolor sit amet",
-        "organizator": "Ziomek1",
-        "addr": "miejsce 23",
-        "date": "30.02.1999"
+        "place": "miejsce 23",
+        "date": "30.02.1999",
+        "cVolo": "1",
+        "minAge": "13"
     },
     {
         "id": 2,
         "title": "Wydarzenie 2",
         "desc": "lorem ipsum dolor sit amet",
-        "organizator": "Ziomek2",
-        "addr": "miejsce 23",
-        "date": "30.02.1999"
+        "place": "miejsce 23",
+        "date": "30.02.1999",
+        "cVolo": "2",
+        "minAge": "13"
     },
     {
         "id": 3,
         "title": "Wydarzenie 3",
         "desc": "lorem ipsum dolor sit amet",
-        "organizator": "Ziomek3",
-        "addr": "miejsce 23",
-        "date": "30.02.1999"
+        "place": "miejsce 23",
+        "date": "30.02.1999",
+        "cVolo": "3",
+        "minAge": "13"
+    },
+    {
+        "id": 4,
+        "title": "Wydarzenie 4",
+        "desc": "lorem ipsum dolor sit amet",
+        "place": "miejsce 23",
+        "date": "30.02.1999",
+        "cVolo": "4",
+        "minAge": "13"
+    },
+    {
+        "id": 5,
+        "title": "Wydarzenie 5",
+        "desc": "lorem ipsum dolor sit amet",
+        "place": "miejsce 23",
+        "date": "30.02.1999",
+        "cVolo": "5",
+        "minAge": "13"
+    },
+    {
+        "id": 6,
+        "title": "Wydarzenie 6",
+        "desc": "lorem ipsum dolor sit amet",
+        "place": "miejsce 23",
+        "date": "30.02.1999",
+        "cVolo": "6",
+        "minAge": "13"
     }
 ]

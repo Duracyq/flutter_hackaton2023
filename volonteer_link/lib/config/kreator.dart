@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:volonteer_link/config/appbarConfig.dart';
 import 'package:volonteer_link/config/drawerConfig.dart';
+import '../service/api.dart' as api;
 
 void main() {
   runApp(MaterialApp(
@@ -16,7 +17,13 @@ class Tworzenie extends StatefulWidget {
 }
 
 class _TworzenieState extends State<Tworzenie> {
-  // @override
+  final TextEditingController title = TextEditingController();
+  final TextEditingController desc = TextEditingController();
+  final TextEditingController place = TextEditingController();
+  final TextEditingController date = TextEditingController();
+  final TextEditingController cVolo = TextEditingController();
+  final TextEditingController minAge = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -70,6 +77,7 @@ class _TworzenieState extends State<Tworzenie> {
                             ),
                             child: Center(
                               child: TextFormField(
+                                controller: title,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   textStyle: const TextStyle(
@@ -97,6 +105,7 @@ class _TworzenieState extends State<Tworzenie> {
                             ),
                             child: Center(
                               child: TextFormField(
+                                controller: desc,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   textStyle: const TextStyle(
@@ -124,6 +133,7 @@ class _TworzenieState extends State<Tworzenie> {
                             ),
                             child: Center(
                               child: TextFormField(
+                                controller: place,
                                 onTap: () => const OutlineInputBorder(),
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
@@ -152,6 +162,7 @@ class _TworzenieState extends State<Tworzenie> {
                             ),
                             child: Center(
                               child: TextFormField(
+                                controller: date,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   textStyle: const TextStyle(
@@ -179,6 +190,7 @@ class _TworzenieState extends State<Tworzenie> {
                             ),
                             child: Center(
                               child: TextFormField(
+                                controller: cVolo,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   textStyle: const TextStyle(
@@ -206,6 +218,7 @@ class _TworzenieState extends State<Tworzenie> {
                             ),
                             child: Center(
                               child: TextFormField(
+                                controller: minAge,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.openSans(
                                   textStyle: const TextStyle(
@@ -237,7 +250,19 @@ class _TworzenieState extends State<Tworzenie> {
                       height: height * 0.1,
                       width: width * 0.5,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          var data = {
+                            "id": "0",
+                            "title": title.text,
+                            "desc": desc.text,
+                            "place": place.text,
+                            "date":date.text,
+                            "cVolo":cVolo.text,
+                            "minAge":minAge.text
+                          };
+                          print(data);
+                          api.Api.createEvent(data);
+                        },
                         child: Text(
                           'Utwórz',
                           style: GoogleFonts.openSans(

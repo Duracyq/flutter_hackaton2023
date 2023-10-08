@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../login.dart';
 
-
 AppBar buildAppBar(BuildContext context, List<String>? drawerTabs) {
   double deviceHeight = MediaQuery.of(context).size.height;
 
@@ -18,16 +17,18 @@ AppBar buildAppBar(BuildContext context, List<String>? drawerTabs) {
               Center(
                 child: Column(
                   children: [
-                    Row(children: [
-                      Icon(Icons.volunteer_activism_outlined, size: 35),
-                      Text(
-                        ' Volonteerly',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26,
+                    Row(
+                      children: [
+                        Icon(Icons.volunteer_activism_outlined, size: 35),
+                        Text(
+                          ' Volonteerly',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26,
+                          ),
                         ),
-                      ),
-                      ],),
+                      ],
+                    ),
                     Text(
                       'Twój Wolontariat w zasięgu ręki',
                       style: TextStyle(
@@ -52,7 +53,7 @@ AppBar buildAppBar(BuildContext context, List<String>? drawerTabs) {
               MaterialPageRoute(builder: (context) => const LoginPage()),
             );
           },
-          icon: const Icon(Icons.person),
+          icon: const Icon(Icons.person, size: 40),
         ),
       ),
     ],
