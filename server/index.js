@@ -67,6 +67,36 @@ app.get('/api/read/', (req, res) => {
   });
 });
 
+const fs = require('fs');
+
+// app.post('/api/create', (req, res) => {
+//   console.log('Received a POST request');
+
+//   // Assuming you want to retrieve data from the request body
+//   const requestBody = req.body;
+
+//   // Define the path to the JSON file where you want to save the data
+//   const filePath = './temp/data.json';
+
+//   // Read existing data from the file (if it exists)
+//   let existingData = [];
+//   try {
+//     existingData = JSON.parse(fs.readFileSync(filePath));
+//   } catch (err) {
+//     // If the file doesn't exist or is not valid JSON, existingData will remain an empty array
+//   }
+
+//   // Push the new data into the existing data array
+//   existingData.push(requestBody);
+
+//   // Write the updated data back to the file
+//   fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
+
+//   // Send a response to the client
+//   res.status(201).json({ message: 'Data created and saved to JSON file successfully' });
+// });
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
