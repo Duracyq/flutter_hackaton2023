@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:volonteer_link/config/appbarConfig.dart';
 import 'package:volonteer_link/config/drawerConfig.dart';
+import '../service/api.dart' as api;
 
 void main() {
   runApp(MaterialApp(
@@ -249,7 +250,19 @@ class _TworzenieState extends State<Tworzenie> {
                       height: height * 0.1,
                       width: width * 0.5,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          var data = {
+                            "id": "0",
+                            "title": title.text,
+                            "desc": desc.text,
+                            "place": place.text,
+                            "date":date.text,
+                            "cVolo":cVolo.text,
+                            "minAge":minAge.text
+                          };
+                          print(data);
+                          api.Api.createEvent(data);
+                        },
                         child: Text(
                           'Utwórz',
                           style: GoogleFonts.openSans(
