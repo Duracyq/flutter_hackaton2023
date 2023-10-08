@@ -4,7 +4,7 @@
         "title": "Wydarzenie 1123",
         "desc": "lorem ipsum dolor sit amet",
         "place": "miejsce 23",
-        "date": "30.02.1999",
+        "date": "30/02",
         "cVolo": "1",
         "minAge": "13"
     },
@@ -13,7 +13,7 @@
         "title": "Wydarzenie 2",
         "desc": "lorem ipsum dolor sit amet",
         "place": "miejsce 23",
-        "date": "30.02.1999",
+        "date": "30/04",
         "cVolo": "2",
         "minAge": "13"
     },
@@ -22,7 +22,7 @@
         "title": "Wydarzenie 3",
         "desc": "lorem ipsum dolor sit amet",
         "place": "miejsce 23",
-        "date": "30.02.1999",
+        "date": "15/01",
         "cVolo": "3",
         "minAge": "13"
     },
