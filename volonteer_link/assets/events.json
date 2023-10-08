@@ -1,26 +1,3 @@
 [
-    {
-        "id": 1,
-        "title": "Wydarzenie 1",
-        "desc": "lorem ipsum dolor sit amet",
-        "organizator": "Ziomek1",
-        "addr": "miejsce 23",
-        "date": "30.02.1999"
-    },
-    {
-        "id": 2,
-        "title": "Wydarzenie 2",
-        "desc": "lorem ipsum dolor sit amet",
-        "organizator": "Ziomek2",
-        "addr": "miejsce 23",
-        "date": "30.02.1999"
-    },
-    {
-        "id": 3,
-        "title": "Wydarzenie 3",
-        "desc": "lorem ipsum dolor sit amet",
-        "organizator": "Ziomek3",
-        "addr": "miejsce 23",
-        "date": "30.02.1999"
-    }
+    
 ]

@@ -69,20 +69,22 @@ class Event {
   final int id;
   final String title;
   final String desc;
-  final String organizator;
-  final String addr;
+  final String place;
   final String date;
+  final String cVolo;
+  final String minAge;
 
-  Event({required this.id, required this.title, required this.desc, required this.organizator, required this.addr, required this.date});
+  Event({required this.id, required this.title, required this.desc, required this.place, required this.date, required this.cVolo, required this.minAge});
 
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
       id: json['id'],
       title: json['title'],
       desc: json['desc'],
-      organizator: json['organizator'],
-      addr:json['addr'],
-      date: json['date']
+      place: json['place'],
+      date:json['date'],
+      cVolo: json['cVolo'],
+      minAge: json['minAge']
     );
   }
 }
