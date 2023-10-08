@@ -18,13 +18,16 @@ AppBar buildAppBar(BuildContext context, List<String>? drawerTabs) {
               Center(
                 child: Column(
                   children: [
-                    Text(
-                      'Volonteerly',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
+                    Row(children: [
+                      Icon(Icons.volunteer_activism_outlined, size: 35),
+                      Text(
+                        ' Volonteerly',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                        ),
                       ),
-                    ),
+                      ],),
                     Text(
                       'Twój Wolontariat w zasięgu ręki',
                       style: TextStyle(

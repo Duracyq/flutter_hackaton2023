@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^6.1.0
   lib: ^0.0.3
   http: ^1.1.0
+  expandable_text: ^2.3.0
 
 dev_dependencies:
   flutter_test:

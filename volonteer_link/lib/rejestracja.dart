@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:volonteer_link/config/drawerConfig.dart';
 import 'user_profil.dart';
 import 'config/appbarConfig.dart';
 import './service/api.dart' as api;
@@ -17,32 +18,10 @@ class _Rejestracja01State extends State<Rejestracja01> {
  
   @override
   Widget build(BuildContext context) {
-    final List<String> drawerTabs = [
-      "O nas",
-      "Informacja kontaktowa",
-      "Wydażenia",
-      "Chat",
-    ];
     double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: buildAppBar(context, null),
-      drawer: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-        child: Drawer(
-          child: ListView(
-            children: drawerTabs
-                .map(
-                  (e) => Text(
-                    e,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-        ),
-      ),
+      drawer: buildDrawerConfig(context),
       body: const Rejestracja(),
     );
   }
