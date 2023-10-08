@@ -70,9 +70,11 @@ class Event {
   final String title;
   final String desc;
   final String organizator;
+  final String addr;
+  final String workplace;
   final String date;
 
-  Event({required this.id, required this.title, required this.desc, required this.organizator, required this.date});
+  Event({required this.id, required this.title, required this.desc, required this.organizator, required this.addr, required this.workplace, required this.date});
 
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
@@ -80,6 +82,8 @@ class Event {
       title: json['title'],
       desc: json['desc'],
       organizator: json['organizator'],
+      addr:json['addr'],
+      workplace: json['workplace'],
       date: json['date']
     );
   }
