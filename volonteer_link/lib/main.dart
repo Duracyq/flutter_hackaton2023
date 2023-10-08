@@ -16,25 +16,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late List<pM.Event> events;
-  List<String> eventName = [];
-  List<String> evenText = [];
-  List<String> eventDate = [];
-  late List<pM.Event> eventList;
+  late List<pM.Event> events; // List to store parsed events
+  late List<String> drawerTabs = ["O nas", "Kontakt", "Wydarzenia", "Chat"];
 
   Future<void> loadJsonData() async {
-    String jsonData = await rootBundle.loadString('assets/data.json');
+    // Load JSON data from the assets folder
+    String jsonData = await rootBundle.loadString('assets/events.json');
     List<dynamic> jsonList = json.decode(jsonData);
 
+    // Parse JSON data into a list of Event objects
     events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
   }
-
-  List<String> drawerTabs = ["O nas", "Kontakt", "Wydarzenia", "Chat"];
 
   @override
   void initState() {
     super.initState();
-    loadJsonData();
+    loadJsonData(); // Load JSON data when the app starts
   }
 
   @override
@@ -94,20 +91,18 @@ class _MyAppState extends State<MyApp> {
               ),
               Expanded(
                 child: Scrollbar(
-                  child: ListView(
-                    children: eventName
-                        .map(
-                          (e) => Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Text(
-                              e,
-                              style: const TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
+                  child: ListView.builder(
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      // Display event information using ListTile
+                      return ListTile(
+                        title: Text(events[index].title),
+                        subtitle: Text(events[index].date),
+                        onTap: () {
+                          // Handle event tap
+                        },
+                      );
+                    },
                   ),
                 ),
               ),
