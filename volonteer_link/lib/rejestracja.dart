@@ -90,7 +90,7 @@ class _RejestracjaState extends State<Rejestracja> {
             ),
           ],
         ),
-        drawer: Drawer(
+      drawer: Drawer(
             child: ListView( 
               children: drawerTabs.map((e) => ListTile(
                 title: Text(e, style:

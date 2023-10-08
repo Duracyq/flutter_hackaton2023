@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'rejestracja.dart';
+//import 'rejestracja.dart';
 import 'user_profil.dart';
-import 'productModel.dart';
+//import 'productModel.dart';
 void main() {
   runApp(const MaterialApp(
       home: MyApp()
