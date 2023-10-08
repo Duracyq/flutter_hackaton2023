@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'dart:convert' show json;
+import 'rejestracja.dart' as r;
 import 'package:flutter/services.dart' show rootBundle;
 import 'productModel.dart' as pM;
 
@@ -85,7 +86,12 @@ class _MyAppState extends State<MyApp> {
           ), 
           actions: <Widget> [
             IconButton(
-              onPressed: (){}, //dodać funkcję 
+              onPressed: (){
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                  builder: (context) => r.Rejestracja()
+                ));
+              }, //dodać funkcję 
               icon: const Icon(Icons.person)
             ),
           ],
