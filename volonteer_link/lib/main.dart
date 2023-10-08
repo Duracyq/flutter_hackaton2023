@@ -1,5 +1,3 @@
-// ignore_for_file: sort_child_properties_last
-
 import 'package:flutter/material.dart';
 import 'dart:convert' show json;
 import 'rejestracja.dart' as r;
@@ -11,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -31,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
   }
 
-  List drawerTabs = ["O nas", "Kontakt", "Wydarzenia", "Chat"];
+  List<String> drawerTabs = ["O nas", "Kontakt", "Wydarzenia", "Chat"];
 
   @override
   void initState() {
@@ -41,157 +39,82 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    //double dHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  //Image.asset('assets/images/logo.png',
-                  Column(
-                    children: [
-                      Center(
-                          child: Column(
-                        children: [
-                          Text(
-                            'Volonteerly',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),
-                          ),
-                          Text(
-                            'Twój Wolontariat w zasięgu ręki',
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 255, 255, 80),
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ))
-                    ],
-                  ),
-                ],
-              ),
-
-            ],
-          ), 
-          actions: <Widget> [
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Volonteerly',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
+          actions: <Widget>[
             IconButton(
-              onPressed: (){
+              onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                  builder: (context) => r.Rejestracja()
-                ));
-              }, //dodać funkcję 
-              icon: const Icon(Icons.person)
+                    builder: (context) => r.Rejestracja(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.person),
             ),
           ],
         ),
-
-
-              //backgroundColor:Color.fromARGB(193, 71, 212),
-              // title: Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     IconButton(
-              //         onPressed: (){}, //dodać funkcję
-              //         icon: const Icon(Icons.view_headline), //dodać icon trzech kresek
-              //         //color:,
-              //     ),
-              //     SizedBox(
-              //       height: dHeight/6,
-              //       child: Align(
-              //         child: const Row(
-              //           children:[
-              //           Column(
-              //             children:[
-              //               Text('Volonteerly', style: TextStyle(
-              //                 color: Colors.white,
-              //                 fontSize: 24,
-              //                 ),
-              //               ),
-              //               Text('Twój Wolontariat w zasięgu ręki', style: TextStyle(
-              //                 color:Color.fromRGBO(255, 255, 255, 1),
-              //                 fontSize: 16,
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //         ],
-              //       ),
-              //       ),
-              //     ),
-              //     IconButton(
-              //         onPressed: (){}, //dodać funkcję
-              //         icon: const Icon(Icons.person),
-              //         color: Colors.white,
-              //     ),
-              //   ],
-              // ),
-            ),
-            drawer: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-              child: Drawer(
-                child: ListView(
-                  children: drawerTabs
-                      .map(
-                        (e) => Text(
-                          e,
-                          style: const TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                      )
-                      .toList(),
+        drawer: Drawer(
+          child: ListView(
+            children: drawerTabs
+                .map(
+                  (e) => ListTile(
+                    title: Text(
+                      e,
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+        body: Align(
+          alignment: Alignment.topCenter,
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(20),
+                child: Text(
+                  'Wydarzenia:',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            body: Align(
-              alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(20),
+              Expanded(
+                child: Scrollbar(
+                  child: ListView(
+                    children: eventName
+                        .map(
+                          (e) => Padding(
+                            padding: const EdgeInsets.all(10),
                             child: Text(
-                              'Wydarzenia:',
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold,
+                              e,
+                              style: const TextStyle(
+                                fontSize: 20,
                               ),
                             ),
                           ),
-                          Scrollbar(
-                            child: ListView(
-                              children: eventName
-                                  .map(
-                                    (e) => Container(
-                                      padding: const EdgeInsets.all(10),
-                                      child: Text(
-                                        e,
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                        )
+                        .toList(),
                   ),
-                  const Row(),
-                ],
-                // drawer: Drawer(),
-                // body: const Text('body'),
+                ),
               ),
-            )));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
