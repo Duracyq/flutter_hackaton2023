@@ -68,14 +68,21 @@ const dataFilePath = '../volunteer_link/assets/users.json';
 function loadData(dataFilePath) {
   try {
     const data = fs.readFileSync(dataFilePath, 'utf8');
-    console.log(`loaded ${dataFilePath}`)
+    console.log(`loaded ${dataFilePath}`);
     return JSON.parse(data);
   } catch (error) {
+    if (error.code === 'ENOENT') {
+      // The file doesn't exist, create an empty array
+      return [];
+    }
+    // Handle other errors here
+    console.error('Error reading file:', error);
     return [];
   }
 }
 
-function saveUserData(userData) {
+
+async function saveUserData(userData) {
   fs.writeFileSync(dataFilePath, JSON.stringify(userData, null, 2));
 }
 
@@ -108,8 +115,8 @@ app.post('/api/postUser', (req, res) => {
   });
 });
 
-let productDataEvents = loadData('../volonteer_link/assets/events.json');
-
+let productDataEvents = loadData("../volonteer_link/assets/events.json");
+console.log(productDataEvents)
 // Create a POST route to handle incoming event data
 app.post('/api/postEvent', (req, res) => {
   console.log('Received event data:', req.body);
@@ -127,7 +134,7 @@ app.post('/api/postEvent', (req, res) => {
 
   // Push the new event data to the existing array
   productDataEvents.push(newEvent);
-  fs.writeFileSync('../volonteer_link/assets/events.json', JSON.stringify(productDataEvents, null, 2));
+  fs.writeFileSync('../volonteer_link/assets/events.json', JSON.stringify(productDataEvents));
   res.status(200).send({
     status: 200,
     message: 'Event registered',
