@@ -88,7 +88,13 @@ class UserProfilState extends State<UserProfil> {
                 ),
               ],
             ),
-            const Column(),
+            Column(
+              children: [
+                Container(
+                  
+                ),
+              ]
+            ),
           ],
         ),
       );
