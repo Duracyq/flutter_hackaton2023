@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volonteer_link/config/drawerConfig.dart';
+import 'package:volonteer_link/config/kreator.dart' as kr;
 import 'dart:convert' show json;
 import 'rejestracja.dart' as r;
 import 'package:flutter/services.dart' show rootBundle;
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
-    var deviceHeight = MediaQuery.of(context).size.height;
+    // var deviceHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       home: Scaffold(
         appBar: buildAppBar(context, null),
@@ -77,7 +78,7 @@ class _MyAppState extends State<MyApp> {
                           // Display event information using ListTile
                           return ListTile(
                             title: Text(events[index].title),
-                            subtitle: Text(events[index].date),
+                            subtitle: Text(events[index].desc),
                             onTap: () {
                               // Handle event tap
                             },
@@ -90,6 +91,13 @@ class _MyAppState extends State<MyApp> {
               );
             }
           },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => kr.Tworzenie()));
+          },
+          child: Icon(Icons.add),
+          
         ),
       ),
     );

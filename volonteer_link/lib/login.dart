@@ -1,32 +1,26 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'config/appbarConfig.dart';
 import 'config/drawerConfig.dart';
-
-import 'main.dart' as m;
 import 'rejestracja.dart' as r;
 
 void main() {
-  runApp(const MyApp());
+  runApp(LoginPage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key});
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-    final List<String> drawerTabs = [
-      "O nas",
-      "Informacja kontaktowa",
-      "Wydażenia",
-      "Chat",
-    ];
-
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
