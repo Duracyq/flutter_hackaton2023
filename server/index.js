@@ -1,16 +1,17 @@
-const { urlencoded } = require('body-parser');
 const express = require('express');
 const snowflake = require('snowflake-sdk');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
-const tabele = 'wydarzenia'; // wydarzenia
-const database = 'Hackathon_Manjaro '; // Hackathon_Manjaro
-const schema = 'tabele'; // tabele
+const tabele = 'wydarzenia';
+const database = 'Hackathon_Manjaro';
+const schema = 'tabele';
 
 const app = express();
-const port = 3000;
+const port = 47176;
 
 app.use(express.json());
-app.use(urlencoded({  extended: true  }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Snowflake configuration
 const snowflakeConfig = {
@@ -36,70 +37,111 @@ connection.connect((err, conn) => {
 
 let productListJson = [];
 
-app.get('/api/read/', (req, res) => {
+app.get('/api/read', (req, res) => {
   connection.execute({
     sqlText: `select * from ${database}.${schema}.${tabele};`,
     streamResult: true,
-    complete: function (err, stmt)
-    {
+    complete: function (err, stmt) {
       let stream = stmt.streamRows();
       // Read data from the stream when it is available
-      stream.on('readable', function (row)
-      {
-        while ((row = this.read()) !== null)
-        {
+      stream.on('readable', function (row) {
+        while ((row = this.read()) !== null) {
           console.log(row);
           productListJson = row;
           console.log(productListJson);
-          if(!productListJson.isEmpty) {
+          if (!productListJson.isEmpty) {
             res.status(200).send(productListJson);
             console.log('sent data');
           }
         }
-      }).on('end', function ()
-      {
+      }).on('end', function () {
         console.log('done');
-      }).on('error', function (err)
-      {
+      }).on('error', function (err) {
         console.log(err);
       });
-    }
+    },
   });
 });
 
-const fs = require('fs');
+const dataFilePath = '../volunteer_link/assets/users.json';
 
-// app.post('/api/create', (req, res) => {
-//   console.log('Received a POST request');
-
-//   // Assuming you want to retrieve data from the request body
-//   const requestBody = req.body;
-
-//   // Define the path to the JSON file where you want to save the data
-//   const filePath = './temp/data.json';
-
-//   // Read existing data from the file (if it exists)
-//   let existingData = [];
-//   try {
-//     existingData = JSON.parse(fs.readFileSync(filePath));
-//   } catch (err) {
-//     // If the file doesn't exist or is not valid JSON, existingData will remain an empty array
-//   }
-
-//   // Push the new data into the existing data array
-//   existingData.push(requestBody);
-
-//   // Write the updated data back to the file
-//   fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
-
-//   // Send a response to the client
-//   res.status(201).json({ message: 'Data created and saved to JSON file successfully' });
-// });
+function loadData(dataFilePath) {
+  try {
+    const data = fs.readFileSync(dataFilePath, 'utf8');
+    console.log(`loaded ${dataFilePath}`);
+    return JSON.parse(data);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      // The file doesn't exist, create an empty array
+      return [];
+    }
+    // Handle other errors here
+    console.error('Error reading file:', error);
+    return [];
+  }
+}
 
 
+async function saveUserData(userData) {
+  fs.writeFileSync(dataFilePath, JSON.stringify(userData, null, 2));
+}
+
+let productDataUsers = loadData(dataFilePath);
+
+// Create a POST route to handle incoming user data
+app.post('/api/postUser', (req, res) => {
+  console.log('Received data:', req.body);
+
+  // Assuming you want to add the received data to the existing JSON array
+  const newUser = {
+    id: productDataUsers.length + 1, // Generate a new ID
+    uname: req.body.uname,
+    sname: req.body.sname,
+    pesel: req.body.pesel,
+    phonenum: req.body.phonenum,
+    email: req.body.email,
+    age: req.body.age,
+    role: req.body.role,
+    regulamin: req.body.regulamin,
+  };
+
+  // Push the new user data to the existing array
+  productDataUsers.push(newUser);
+  saveUserData(productDataUsers);
+  res.status(200).send({
+    status: 200,
+    message: 'User registered',
+    product: productDataUsers,
+  });
+});
+
+let productDataEvents = loadData("../volonteer_link/assets/events.json");
+console.log(productDataEvents)
+// Create a POST route to handle incoming event data
+app.post('/api/postEvent', (req, res) => {
+  console.log('Received event data:', req.body);
+
+  // Assuming you want to add the received data to the existing JSON array
+  const newEvent = {
+    id: productDataEvents.length + 1, // Generate a new ID
+    title: req.body.title,
+    desc: req.body.desc,
+    place: req.body.place,
+    date: req.body.date,
+    cVolo: req.body.cVolo,
+    minAge: req.body.minAge,
+  };
+
+  // Push the new event data to the existing array
+  productDataEvents.push(newEvent);
+  fs.writeFileSync('../volonteer_link/assets/events.json', JSON.stringify(productDataEvents));
+  res.status(200).send({
+    status: 200,
+    message: 'Event registered',
+    product: productDataEvents,
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-// statement;
