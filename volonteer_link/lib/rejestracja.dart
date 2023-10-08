@@ -1,5 +1,94 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'user_profil.dart';
+
+class Rejestracja01 extends StatefulWidget {
+  const Rejestracja01({super.key});
+
+  @override
+  State<Rejestracja01> createState() => _Rejestracja01State();
+}
+
+class _Rejestracja01State extends State<Rejestracja01> {
+  @override
+  Widget build(BuildContext context) {
+    final List<String> drawerTabs = [
+      "O nas",
+      "Informacja kontaktowa",
+      "Wydażenia",
+      "Chat",
+    ];
+    double deviceHeight = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(156, 196, 15, 227),
+        toolbarHeight: deviceHeight / 6 - 20,
+        title: const SizedBox(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                      child: Column(
+                    children: [
+                      Text(
+                        'Volonteerly',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 34,
+                        ),
+                      ),
+                      Text(
+                        'Twój Wolontariat w zasięgu ręki',
+                        style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 80),
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ))
+                ],
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const UserProfil()),
+                );
+              },
+              icon: const Icon(Icons.person),
+            ),
+          ),
+        ],
+      ),
+      drawer: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+        child: Drawer(
+          child: ListView(
+            children: drawerTabs
+                .map(
+                  (e) => Text(
+                    e,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      ),
+      body: const Rejestracja(),
+    );
+  }
+}
 
 class Rejestracja extends StatefulWidget {
   const Rejestracja({super.key});
@@ -32,7 +121,7 @@ class _RejestracjaState extends State<Rejestracja> {
             width: width * 0.9,
             height: height * 1.5,
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 177, 251),
+                color: const Color.fromARGB(255, 255, 177, 251),
                 borderRadius: BorderRadius.circular(15)),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -331,7 +420,7 @@ class _RejestracjaState extends State<Rejestracja> {
                       const SizedBox(height: 20.0),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          minimumSize: Size(200, 55),
+                          minimumSize: const Size(200, 55),
                           backgroundColor:
                               const Color.fromARGB(255, 140, 31, 134),
                         ),
