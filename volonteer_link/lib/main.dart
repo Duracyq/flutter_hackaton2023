@@ -7,7 +7,6 @@ import 'dart:convert' show json;
 import 'rejestracja.dart' as r;
 import 'productModel.dart' as pM;
 import 'config/appbarConfig.dart';
-
 void main() {
   runApp(const MaterialApp(home: MyApp()));
 }
@@ -20,6 +19,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   late List<String> drawerTabs = ["O nas", "Kontakt", "Wydarzenia", "Chat"];
 
   late Future<List<pM.Event>> eventsFuture; // Future to store parsed events
@@ -250,6 +250,7 @@ class _MyAppState extends State<MyApp> {
                         textStyle: const TextStyle(
                             fontStyle: FontStyle.normal,
                             color: Color.fromARGB(255, 55, 0, 61),
+
                             fontSize: 25,
                             fontWeight: FontWeight.bold),
                       ),
@@ -367,5 +368,6 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+
   }
 }

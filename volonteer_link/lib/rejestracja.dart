@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'user_profil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:volonteer_link/config/drawerConfig.dart';
 import 'user_profil.dart';
@@ -106,6 +107,7 @@ class _RejestracjaState extends State<Rejestracja> {
                             fontStyle: FontStyle.normal,
                             color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
+
                           ),
                         ),
                         decoration: const InputDecoration(
@@ -134,6 +136,7 @@ class _RejestracjaState extends State<Rejestracja> {
                             fontStyle: FontStyle.normal,
                             color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
+
                           ),
                         ),
                         decoration: const InputDecoration(
@@ -164,6 +167,7 @@ class _RejestracjaState extends State<Rejestracja> {
                             fontStyle: FontStyle.normal,
                             color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
+
                           ),
                         ),
                         decoration: const InputDecoration(
@@ -220,6 +224,7 @@ class _RejestracjaState extends State<Rejestracja> {
                             fontStyle: FontStyle.normal,
                             color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
+
                           ),
                         ),
                         decoration: const InputDecoration(
@@ -332,6 +337,7 @@ class _RejestracjaState extends State<Rejestracja> {
                             fontStyle: FontStyle.normal,
                             color: Color.fromRGBO(131, 116, 116, 100),
                             fontSize: 20,
+
                           ),
                         ),
                         decoration: const InputDecoration(
