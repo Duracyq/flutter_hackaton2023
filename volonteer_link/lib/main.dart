@@ -21,12 +21,10 @@ class _MyAppState extends State<MyApp> {
 
   late List<productModel.Event> events;
 
-  @override
-  Widget build(BuildContext context) {
     List <String> eventName = [];
     List <String> evenText = [];
     List <String> eventDate = [];
-    late List<Event> events;
+    late List<productModel.Event> eventsList = [];
 
 
   Future<void> loadJsonData() async {
@@ -35,6 +33,13 @@ class _MyAppState extends State<MyApp> {
 
     events = jsonList.map((json) => productModel.Event.fromJson(json)).toList();
   }
+
+  static List drawerTabs = [
+    "O nas",
+    "Kontakt",
+    "Wydarzenia",
+    "Chat",
+  ];
 
   @override
   void initState() {
@@ -176,9 +181,9 @@ class _MyAppState extends State<MyApp> {
               const Row(),
              ],
         // drawer: Drawer(),
-        body: const Text('body'),
+        // body: const Text('body'),
       ),
-    );
+    )));
   }
 }
 
