@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert' show json;
 import 'package:flutter/services.dart' show rootBundle;
-import 'productModel.dart' as productModel;
+import 'productModel.dart' as pM;
 
 
 void main() {
@@ -21,22 +21,25 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  late List<productModel.Event> events;
-
-  @override
-  Widget build(BuildContext context) {
+  late List<pM.Event> events;
     List <String> eventName = [];
     List <String> evenText = [];
     List <String> eventDate = [];
-    late List<Event> events;
+    late List<pM.Event> eventList;
 
 
   Future<void> loadJsonData() async {
     String jsonData = await rootBundle.loadString('assets/data.json');
     List<dynamic> jsonList = json.decode(jsonData);
 
-    events = jsonList.map((json) => productModel.Event.fromJson(json)).toList();
+    events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
   }
+  List drawerTabs = [
+    "O nas",
+    "Kontakt",
+    "Wydarzenia",
+    "Chat"
+  ];
 
   @override
   void initState() {
@@ -180,7 +183,7 @@ class _MyAppState extends State<MyApp> {
         // drawer: Drawer(),
         // body: const Text('body'),
       ),
-    );
+    )));
   }
 }
 
