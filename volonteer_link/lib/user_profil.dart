@@ -8,68 +8,83 @@ class UserProfil extends StatefulWidget {
 }
 
 class UserProfilState extends State<UserProfil> {
+  @override
+  Widget build(BuildContext context) {
+
     final List <String> drawerTabs = [
       "O nas",
       "Informacja kontaktowa",
       "Wydażenia",
       "Chat",
     ];
-
+    
     String userName = "testName";
     String userSecondName = "testSecondName";
 
-  @override
-  Widget build(BuildContext context) {
+
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor:const Color.fromARGB(156, 196, 15, 227),
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [
-              //Image.asset('assets/images/logo.png',
-              Column(
-                children: [
-                  Center(
-                    child: Column(
-                      children:[
-                        Text('Volonteerly', 
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          ),
-                        ),
-                        Text('Twój Wolontariat w zasięgu ręki', 
+          toolbarHeight: deviceHeight/6-20,
+          title: const SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget> [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(
+                        children:[
+                          Text('Volonteerly', 
                           style: TextStyle(
-                            color: Color.fromRGBO(255,255,255,80),
-                            fontSize: 12,
-                            
+                            color: Colors.white,
+                            fontSize: 34,
+                            ),
                           ),
-                      ),
-                      ],
+                          Text('Twój Wolontariat w zasięgu ręki', 
+                            style: TextStyle(
+                              color: Color.fromRGBO(255,255,255,80),
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      )
                     )
-                  )
-                  
-                ],
-              ),
-            ],
+                    
+                  ],
+                ),
+              ],
+            ),
           ), 
           actions: <Widget> [
-            IconButton(
-              onPressed: (){}, //dodać funkcję 
-              icon: const Icon(Icons.person)
+            Padding( 
+              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+              child: IconButton(
+                onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const UserProfil()),
+                  );
+                },
+                icon: const Icon(Icons.person),
+              ),
             ),
           ],
         ),
-        drawer: Drawer( 
-          child: ListView(
-            children: drawerTabs.map((e) => Text(e, 
-                style: const TextStyle(
-                  fontSize: 20,  
+        drawer: Drawer(
+            child: ListView( 
+              children: drawerTabs.map((e) => ListTile(
+                title: Text(e, style:
+                  const TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
-              ),
-            ).toList(),
+                onTap: (){},
+              ),).toList(), 
+            ),
           ),
-        ),
         body: Column(
           children: [
             Column( // dane użytkownika

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'user_profil.dart';
 void main() {
   runApp(const MaterialApp(
       home: MyApp()
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
-    var event = Event(/*pobieramy dane z databasu*/);
+    //var event = Event(/*pobieramy dane z databasu*/);
 
     final List <String> drawerTabs = [
       "O nas",
@@ -102,7 +103,7 @@ class _MyAppState extends State<MyApp> {
               ),).toList(), 
             ),
           ),
-      body: Column(
+      body: const Column(
         children: [],
       ),
             
