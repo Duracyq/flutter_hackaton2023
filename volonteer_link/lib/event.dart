@@ -42,7 +42,7 @@ class _EventsState extends State<Events> {
         child: Column(
           children: [
             SizedBox(
-              height: height * 0.05,
+              height: height * 0.02,
               width: width,
             ),
             Padding(
@@ -219,7 +219,7 @@ class _EventsState extends State<Events> {
               ),
             ),
             SizedBox(
-              height: height * 0.05,
+              height: height * 0.02,
             ),
             Container(
               width: width * 0.5,
