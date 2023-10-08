@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'dart:convert' show json;
 import 'package:flutter/services.dart' show rootBundle;
@@ -176,7 +178,7 @@ class _MyAppState extends State<MyApp> {
               const Row(),
              ],
         // drawer: Drawer(),
-        body: const Text('body'),
+        // body: const Text('body'),
       ),
     );
   }
