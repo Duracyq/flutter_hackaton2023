@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'user_profil.dart';
+
+import 'main.dart' as m;
+import 'rejestracja.dart' as r;
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,15 @@ class MyApp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Align(
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(); // Use pop to navigate back
+                      },
+                      icon: Icon(Icons.arrow_back_ios_rounded),
+                    ),
+                    alignment: Alignment.topLeft,
+                  ),
                   Container(
                     width: width * 0.8,
                     height: 60,
@@ -125,6 +136,14 @@ class MyApp extends StatelessWidget {
                     },
                     child: const Text('Zaloguj się'),
                   ),
+                  TextButton(
+                    child: const Text('Zarejestruj się'),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const r.Rejestracja01()),
+                      );
+                    },
+                  )
                 ],
               ),
             ),

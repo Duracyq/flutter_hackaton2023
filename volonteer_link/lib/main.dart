@@ -16,26 +16,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late List<pM.Event> events; // List to store parsed events
   late List<String> drawerTabs = ["O nas", "Kontakt", "Wydarzenia", "Chat"];
 
-  Future<void> loadJsonData() async {
+  late Future<List<pM.Event>> eventsFuture; // Future to store parsed events
+
+  Future<List<pM.Event>> loadJsonData() async {
     // Load JSON data from the assets folder
     String jsonData = await rootBundle.loadString('assets/events.json');
     List<dynamic> jsonList = json.decode(jsonData);
 
     // Parse JSON data into a list of Event objects
-    events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
+    List<pM.Event> events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
+    
+    return events;
   }
 
   @override
   void initState() {
     super.initState();
-    loadJsonData(); // Load JSON data when the app starts
+    eventsFuture = loadJsonData(); // Load JSON data when the app starts
   }
-
   @override
   Widget build(BuildContext context) {
+    var deviceHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -51,7 +54,7 @@ class _MyAppState extends State<MyApp> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => r.Rejestracja(),
+                    builder: (context) => r.Rejestracja01(),
                   ),
                 );
               },
@@ -61,53 +64,81 @@ class _MyAppState extends State<MyApp> {
         ),
         drawer: Drawer(
           child: ListView(
-            children: drawerTabs
-                .map(
-                  (e) => ListTile(
-                    title: Text(
-                      e,
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
+            children: [
+              ...drawerTabs.map(
+                (e) => ListTile(
+                  title: Text(
+                    e,
+                    style: const TextStyle(
+                      fontSize: 20,
                     ),
                   ),
-                )
-                .toList(),
-          ),
-        ),
-        body: Align(
-          alignment: Alignment.topCenter,
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  'Wydarzenia:',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  contentPadding: EdgeInsets.all(deviceHeight / 25),
                 ),
               ),
-              Expanded(
-                child: Scrollbar(
-                  child: ListView.builder(
-                    itemCount: events.length,
-                    itemBuilder: (context, index) {
-                      // Display event information using ListTile
-                      return ListTile(
-                        title: Text(events[index].title),
-                        subtitle: Text(events[index].date),
-                        onTap: () {
-                          // Handle event tap
-                        },
-                      );
-                    },
-                  ),
+              ListTile(
+                title: Row(
+                  children: [
+                    const Icon(Icons.copyright),
+                    const SizedBox(width: 8), // Add some spacing
+                    Text(
+                      'Copyright 2023',
+                      style: TextStyle(
+                        fontSize: 14, // Adjust the font size as needed
+                        color: Colors.grey, // Customize the color
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
+        ),
+
+        body: FutureBuilder<List<pM.Event>>(
+          future: eventsFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: Text('No events available.'));
+            } else {
+              List<pM.Event> events = snapshot.data!;
+              return Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      'Wydarzenia:',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Scrollbar(
+                      child: ListView.builder(
+                        itemCount: events.length,
+                        itemBuilder: (context, index) {
+                          // Display event information using ListTile
+                          return ListTile(
+                            title: Text(events[index].title),
+                            subtitle: Text(events[index].date),
+                            onTap: () {
+                              // Handle event tap
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
         ),
       ),
     );
