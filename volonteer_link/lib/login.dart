@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'config/appbarConfig.dart';
+import 'config/drawerConfig.dart';
 
 import 'main.dart' as m;
 import 'rejestracja.dart' as r;
@@ -26,6 +30,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: buildAppBar(context, null),
+        drawer: buildDrawerConfig(context),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(top: width * 0.05),
           child: Center(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volonteer_link/config/drawerConfig.dart';
 import 'dart:convert' show json;
 import 'rejestracja.dart' as r;
 import 'package:flutter/services.dart' show rootBundle;
@@ -43,38 +44,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: buildAppBar(context, null),
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              ...drawerTabs.map(
-                (e) => ListTile(
-                  title: Text(
-                    e,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  contentPadding: EdgeInsets.all(deviceHeight / 25),
-                ),
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    const Icon(Icons.copyright),
-                    const SizedBox(width: 8), // Add some spacing
-                    Text(
-                      'Copyright 2023',
-                      style: TextStyle(
-                        fontSize: 14, // Adjust the font size as needed
-                        color: Colors.grey, // Customize the color
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+        drawer: buildDrawerConfig(context),
 
         body: FutureBuilder<List<pM.Event>>(
           future: eventsFuture,
