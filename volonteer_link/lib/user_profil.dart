@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'config/appbarConfig.dart';
+import 'config/drawerConfig.dart';
+import './login.dart'; // Import the login page file
 
 class UserProfil extends StatefulWidget {
   const UserProfil({super.key});
@@ -8,96 +11,54 @@ class UserProfil extends StatefulWidget {
 }
 
 class UserProfilState extends State<UserProfil> {
-    final List <String> drawerTabs = [
-      "O nas",
-      "Informacja kontaktowa",
-      "Wydażenia",
-      "Chat",
-    ];
-
     String userName = "testName";
     String userSecondName = "testSecondName";
+    bool isLoggedIn = false;
+
+    // implement navigating to register account or login path: ./login.dart/
+    // if isLoggedIn == false
+  
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor:const Color.fromARGB(156, 196, 15, 227),
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [
-              //Image.asset('assets/images/logo.png',
-              Column(
-                children: [
-                  Center(
-                    child: Column(
-                      children:[
-                        Text('Volonteerly', 
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          ),
-                        ),
-                        Text('Twój Wolontariat w zasięgu ręki', 
-                          style: TextStyle(
-                            color: Color.fromRGBO(255,255,255,80),
-                            fontSize: 12,
-                            
-                          ),
-                      ),
-                      ],
-                    )
-                  )
-                  
-                ],
-              ),
-            ],
-          ), 
-          actions: <Widget> [
-            IconButton(
-              onPressed: (){}, //dodać funkcję 
-              icon: const Icon(Icons.person)
-            ),
-          ],
-        ),
-        drawer: Drawer( 
-          child: ListView(
-            children: drawerTabs.map((e) => Text(e, 
-                style: const TextStyle(
-                  fontSize: 20,  
-                ),
-              ),
-            ).toList(),
-          ),
-        ),
-        body: Column(
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: buildAppBar(context, null),
+    drawer: buildDrawerConfig(context),
+    body: Column(
+      children: [
+        Column( // dane użytkownika
           children: [
-            Column( // dane użytkownika
+            Row(
               children: [
-                Row(
-                  children: [
-                    // Image(
-                    //   image:,
-                    // ),
-                    Text(userName), 
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(userSecondName),
-                  ],
+                // Image(
+                //   image:,
+                // ),
+                Text(userName),
+                const SizedBox(
+                  width: 5,
                 ),
+                Text(userSecondName),
               ],
             ),
-            Column(
-              children: [
-                Container(
-                  
-                ),
-              ]
+          ],
+        ),
+        Column(
+          children: [
+            Container(
+              // Your content for the user profile
             ),
           ],
         ),
-      );
-  }
+        // Conditional navigation based on isLoggedIn
+        if (!isLoggedIn)
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+            },
+            child: Text('Login'),
+          ),
+      ],
+    ),
+  );
 }
-
+}

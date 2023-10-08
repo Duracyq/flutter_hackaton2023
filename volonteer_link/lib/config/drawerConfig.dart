@@ -6,6 +6,7 @@ Drawer buildDrawerConfig(BuildContext context){
       "O nas",
       "Informacja kontaktowa",
       "Wydarzenia",
+      "Użytkownicy",
       "Chat",
     ];
 
