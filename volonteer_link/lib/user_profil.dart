@@ -11,6 +11,7 @@ class UserProfil extends StatefulWidget {
 }
 
 class UserProfilState extends State<UserProfil> {
+
     String userName = "testName";
     String userSecondName = "testSecondName";
     bool isLoggedIn = false;
@@ -18,6 +19,7 @@ class UserProfilState extends State<UserProfil> {
     // implement navigating to register account or login path: ./login.dart/
     // if isLoggedIn == false
   
+
 
   @override
 Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ Widget build(BuildContext context) {
     body: Column(
       children: [
         Column( // dane użytkownika
+
           children: [
             Row(
               children: [

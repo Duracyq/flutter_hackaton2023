@@ -4,6 +4,7 @@ import 'package:expandable_text/expandable_text.dart';
 import './config/appbarConfig.dart';
 import 'config/drawerConfig.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,8 +33,10 @@ class Events extends StatefulWidget {
 class _EventsState extends State<Events> {
   @override
   Widget build(BuildContext context) {
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
 
     return Scaffold(
       appBar: buildAppBar(context, null),
@@ -155,6 +158,7 @@ class _EventsState extends State<Events> {
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
+
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -216,6 +220,7 @@ class _EventsState extends State<Events> {
                     icon: const Icon(Icons.arrow_forward_ios_rounded),
                   ),
                 ],
+
               ),
             ),
             SizedBox(
