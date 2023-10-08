@@ -1,11 +1,7 @@
-// ignore_for_file: sort_child_properties_last
-
 import 'package:flutter/material.dart';
-import 'dart:convert' show json;
-import 'package:flutter/services.dart' show rootBundle;
-import 'productModel.dart' as pM;
-
-
+import 'rejestracja.dart';
+import 'user_profil.dart';
+import 'productModel.dart';
 void main() {
   runApp(const MaterialApp(
       home: MyApp()
@@ -20,131 +16,80 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-  late List<pM.Event> events;
-    List <String> eventName = [];
-    List <String> evenText = [];
-    List <String> eventDate = [];
-    late List<pM.Event> eventList;
-
-
-  Future<void> loadJsonData() async {
-    String jsonData = await rootBundle.loadString('assets/data.json');
-    List<dynamic> jsonList = json.decode(jsonData);
-
-    events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
-  }
-  List drawerTabs = [
-    "O nas",
-    "Kontakt",
-    "Wydarzenia",
-    "Chat"
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    loadJsonData();
-  }
-
   @override
   Widget build(BuildContext context) {
-    //double dHeight = MediaQuery.of(context).size.height;
-    return MaterialApp(
-      home: Scaffold(
+
+    List <String> drawerTabs = [
+      "O nas",
+      "Informacja kontaktowa",
+      "Wydaenia",
+      "Chat",
+    ];
+
+     double deviceHeight = MediaQuery.of(context).size.height;
+
+    return Scaffold(
         appBar: AppBar(
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [
-              //Image.asset('assets/images/logo.png',
-              Column(
-                children: [
-                  Center(
-                    child: Column(
-                      children:[
-                        Text('Volonteerly', 
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          ),
-                        ),
-                        Text('Twój Wolontariat w zasięgu ręki', 
+          backgroundColor:const Color.fromARGB(156, 196, 15, 227),
+          toolbarHeight: deviceHeight/6-20,
+          title: const SizedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget> [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Column(
+                        children:[
+                          Text('Volonteerly', 
                           style: TextStyle(
-                            color: Color.fromRGBO(255,255,255,80),
-                            fontSize: 12,
-                            
+                            color: Colors.white,
+                            fontSize: 34,
+                            ),
                           ),
-                      ),
-                      ],
+                          Text('Twój Wolontariat w zasięgu ręki', 
+                            style: TextStyle(
+                              color: Color.fromRGBO(255,255,255,80),
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      )
                     )
-                  )
-                  
-                ],
-              ),
-            ],
+                    
+                  ],
+                ),
+              ],
+            ),
           ), 
           actions: <Widget> [
-            IconButton(
-              onPressed: (){}, //dodać funkcję 
-              icon: const Icon(Icons.person)
+            Padding( 
+              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+              child: IconButton(
+                onPressed: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const UserProfil()),
+                  );
+                },
+                icon: const Icon(Icons.person),
+              ),
             ),
           ],
-          
-          //backgroundColor:Color.fromARGB(193, 71, 212),
-          // title: Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     IconButton(
-          //         onPressed: (){}, //dodać funkcję 
-          //         icon: const Icon(Icons.view_headline), //dodać icon trzech kresek
-          //         //color:, 
-          //     ),
-          //     SizedBox(
-          //       height: dHeight/6,
-          //       child: Align(
-          //         child: const Row(
-          //           children:[
-          //           Column(
-          //             children:[
-          //               Text('Volonteerly', style: TextStyle(
-          //                 color: Colors.white,
-          //                 fontSize: 24,
-          //                 ),
-          //               ),
-          //               Text('Twój Wolontariat w zasięgu ręki', style: TextStyle(
-          //                 color:Color.fromRGBO(255, 255, 255, 1),
-          //                 fontSize: 16,
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ],
-          //       ),
-          //       ),
-          //     ),
-          //     IconButton(
-          //         onPressed: (){}, //dodać funkcję 
-          //         icon: const Icon(Icons.person), 
-          //         color: Colors.white, 
-          //     ),
-          //   ],
-          // ),
         ),
-
-        drawer: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-          child: Drawer(
-            child: ListView(
-              children: drawerTabs.map((e) => Text(e, 
-                  style: const TextStyle(
-                    fontSize: 20,  
+        drawer: Drawer(
+            child: ListView( 
+              children: drawerTabs.map((e) => ListTile(
+                title: Text(e, style:
+                  const TextStyle(
+                    fontSize: 20,
                   ),
                 ),
-              ).toList(),
+                onTap: (){},
+              ),).toList(), 
             ),
           ),
-        ),
-        body:Align(
+          body: const Align(
             alignment: Alignment.topCenter,
             child: Column(
             children:[
@@ -152,7 +97,7 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   Column(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.all(20),
                         child: Text('Wydarzenia:',
                           style: TextStyle(
@@ -162,28 +107,36 @@ class _MyAppState extends State<MyApp> {
                         ),
                       ),
                       Scrollbar(
-                        child: ListView(
-                          children: 
-                              eventName.map((e) => Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(e, 
-                                    style: const TextStyle(
-                                      fontSize: 20,  
-                                    ),
-                                  ),
-                              ),).toList(),
-                        ),
+                        child: Text('x'),
                       ),
                     ],
                   ),
                 ],
               ),
-              const Row(),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Text('Chaty:',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Scrollbar(
+                        child: Text('x'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
              ],
-        // drawer: Drawer(),
-        // body: const Text('body'),
-      ),
-    )));
+            ),
+          ),
+        );
+  
   }
 }
-

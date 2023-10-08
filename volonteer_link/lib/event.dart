@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
       "Chat",
     ];
 
-     double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -81,30 +81,31 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
               child: IconButton(
                 onPressed: (){
-                  //   Navigator.of(context).push(
-                  //     MaterialPageRoute(builder: (context) => const UserProfil()),
-                  // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const UserProfil()),
+                  );
                 },
                 icon: const Icon(Icons.person),
               ),
             ),
           ],
         ),
-      drawer: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-          child: Drawer(
-            child: ListView(
-              children: drawerTabs.map((e) => Text(e, 
-                  style: const TextStyle(
-                    fontSize: 20,  
+      drawer: Drawer(
+            child: ListView( 
+              children: drawerTabs.map((e) => ListTile(
+                title: Text(e, style:
+                  const TextStyle(
+                    fontSize: 20,
                   ),
                 ),
-              ).toList(),
+                onTap: (){},
+              ),).toList(), 
             ),
           ),
-        ),
-      // body: 
-          
+      body: Column(
+        children: [],
+      ),
+            
     );
   }
 }
