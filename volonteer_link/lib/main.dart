@@ -95,10 +95,10 @@ class _MyAppState extends State<MyApp> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => kr.Tworzenie()));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => kr.Tworzenie()));
           },
           child: Icon(Icons.add),
-          
         ),
       ),
     );
