@@ -81,9 +81,9 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
               child: IconButton(
                 onPressed: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const UserProfil()),
-                  );
+                  //   Navigator.of(context).push(
+                  //     MaterialPageRoute(builder: (context) => const UserProfil()),
+                  //    );
                 },
                 icon: const Icon(Icons.person),
               ),
@@ -102,9 +102,7 @@ class _MyAppState extends State<MyApp> {
               ).toList(),
             ),
           ),
-        ),
-      body: 
-            
+        ),            
     );
   }
 }
