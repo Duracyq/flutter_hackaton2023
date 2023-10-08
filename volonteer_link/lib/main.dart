@@ -3,6 +3,7 @@ import 'dart:convert' show json;
 import 'rejestracja.dart' as r;
 import 'package:flutter/services.dart' show rootBundle;
 import 'productModel.dart' as pM;
+import 'config/appbarConfig.dart';
 
 void main() {
   runApp(const MaterialApp(home: MyApp()));
@@ -41,27 +42,7 @@ class _MyAppState extends State<MyApp> {
     var deviceHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Volonteerly',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => r.Rejestracja01(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.person),
-            ),
-          ],
-        ),
+        appBar: buildAppBar(context, null),
         drawer: Drawer(
           child: ListView(
             children: [

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'user_profil.dart';
+import 'config/appbarConfig.dart';
 import './service/api.dart' as api;
 import 'main.dart' as m;
 
@@ -24,54 +25,7 @@ class _Rejestracja01State extends State<Rejestracja01> {
     ];
     double deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(156, 196, 15, 227),
-        toolbarHeight: deviceHeight / 6 - 20,
-        title: const SizedBox(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                      child: Column(
-                    children: [
-                      Text(
-                        'Volonteerly',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 34,
-                        ),
-                      ),
-                      Text(
-                        'Twój Wolontariat w zasięgu ręki',
-                        style: TextStyle(
-                          color: Color.fromRGBO(255, 255, 255, 80),
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ))
-                ],
-              ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const UserProfil()),
-                );
-              },
-              icon: const Icon(Icons.person),
-            ),
-          ),
-        ],
-      ),
+      appBar: buildAppBar(context, null),
       drawer: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
         child: Drawer(
