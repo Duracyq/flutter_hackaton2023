@@ -24,28 +24,16 @@ class _MyAppState extends State<MyApp> {
   late Future<List<pM.Event>> eventsFuture; // Future to store parsed events
 
   Future<List<pM.Event>> loadJsonData() async {
-  try {
     // Load JSON data from the assets folder
     String jsonData = await rootBundle.loadString('assets/events.json');
-
-    // Check if the loaded JSON data is null
-    // if (jsonData == null) {
-    //   throw Exception('Failed to load JSON data');
-    // }
-
     List<dynamic> jsonList = json.decode(jsonData);
 
     // Parse JSON data into a list of Event objects
-    List<pM.Event> events = jsonList.map((json) => pM.Event.fromJson(json)).toList();
+    List<pM.Event> events =
+        jsonList.map((json) => pM.Event.fromJson(json)).toList();
 
     return events;
-  } catch (e) {
-    // Handle the error, you can print it or perform other actions as needed
-    print('Error loading JSON data: $e');
-    return []; // Return an empty list in case of an error
   }
-}
-
 
   @override
   void initState() {
@@ -55,6 +43,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    // var deviceHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       home: Scaffold(
         appBar: buildAppBar(context, null),
@@ -66,11 +55,10 @@ class _MyAppState extends State<MyApp> {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: Text('No events available.'));
             } else {
-              List<pM.Event> events = snapshot.data ?? [];
-              if (events.isEmpty) {
-                return Center(child: Text('No events available.'));
-              }
+              List<pM.Event> events = snapshot.data!;
               return Column(
                 children: [
                   const Padding(
@@ -110,8 +98,8 @@ class _MyAppState extends State<MyApp> {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => kr.Tworzenie()));
           },
           child: Icon(Icons.add),
+          
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
   }
